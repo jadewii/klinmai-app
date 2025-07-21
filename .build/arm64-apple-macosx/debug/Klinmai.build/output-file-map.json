@@ -1,0 +1,137 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/master.swiftdeps"
+  },
+  "/Users/jade/Klinmai/ConsoleView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ConsoleView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ConsoleView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ConsoleView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ConsoleView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/CopyMascot.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot.swiftdeps"
+  },
+  "/Users/jade/Klinmai/DuplicateScanner.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner.swiftdeps"
+  },
+  "/Users/jade/Klinmai/FileOrganizer.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FileOrganizer.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FileOrganizer.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FileOrganizer~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FileOrganizer.swiftdeps"
+  },
+  "/Users/jade/Klinmai/KlinmaiApp.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/KlinmaiApp.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/KlinmaiApp.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/KlinmaiApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/KlinmaiApp.swiftdeps"
+  },
+  "/Users/jade/Klinmai/LLMHandler.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/LLMHandler.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/LLMHandler.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/LLMHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/LLMHandler.swiftdeps"
+  },
+  "/Users/jade/Klinmai/MailAndTrashCleaner.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MailAndTrashCleaner.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MailAndTrashCleaner.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MailAndTrashCleaner~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MailAndTrashCleaner.swiftdeps"
+  },
+  "/Users/jade/Klinmai/ProjectDetector.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectDetector.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectDetector.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectDetector~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectDetector.swiftdeps"
+  },
+  "/Users/jade/Klinmai/SmartArchiveManager.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartArchiveManager.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartArchiveManager.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartArchiveManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartArchiveManager.swiftdeps"
+  },
+  "/Users/jade/Klinmai/SmartCareEngine.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareEngine.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareEngine.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareEngine.swiftdeps"
+  },
+  "/Users/jade/Klinmai/SmartCleanManager.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCleanManager.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCleanManager.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCleanManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCleanManager.swiftdeps"
+  },
+  "/Users/jade/Klinmai/SystemCleaner.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SystemCleaner.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SystemCleaner.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SystemCleaner~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SystemCleaner.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/ActionBarView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ActionBarView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ActionBarView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ActionBarView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ActionBarView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/ArchiveView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ArchiveView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ArchiveView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ArchiveView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ArchiveView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/CompactArchiveView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CompactArchiveView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CompactArchiveView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CompactArchiveView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CompactArchiveView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/FilePreviewView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/MascotImage.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/MascotImageLoader.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/ProjectsView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/SmartCareView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/SmartSuggestionsView.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartSuggestionsView.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartSuggestionsView.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartSuggestionsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartSuggestionsView.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/iCloudArchiveModal.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/iCloudArchiveModal.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/iCloudArchiveModal.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/iCloudArchiveModal~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/iCloudArchiveModal.swiftdeps"
+  }
+}
