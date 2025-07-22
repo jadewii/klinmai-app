@@ -32,6 +32,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/DesktopOrganizer.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/DuplicateScanner.swift"
         },
         {
@@ -84,6 +88,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/DesktopOrganizerView.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/Views/FilePreviewView.swift"
         },
         {
@@ -133,6 +141,7 @@
       "objects" : [
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ConsoleView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot.swift.o",
+        "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizer.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FileOrganizer.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/KlinmaiApp.swift.o",
@@ -146,6 +155,7 @@
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ActionBarView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ArchiveView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CompactArchiveView.swift.o",
+        "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizerView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader.swift.o",
@@ -218,6 +228,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizer.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DuplicateScanner.swift.o"
         },
         {
@@ -270,6 +284,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizerView.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/FilePreviewView.swift.o"
         },
         {
@@ -313,6 +331,7 @@
       "sources" : [
         "/Users/jade/Klinmai/ConsoleView.swift",
         "/Users/jade/Klinmai/CopyMascot.swift",
+        "/Users/jade/Klinmai/DesktopOrganizer.swift",
         "/Users/jade/Klinmai/DuplicateScanner.swift",
         "/Users/jade/Klinmai/FileOrganizer.swift",
         "/Users/jade/Klinmai/KlinmaiApp.swift",
@@ -326,6 +345,7 @@
         "/Users/jade/Klinmai/Views/ActionBarView.swift",
         "/Users/jade/Klinmai/Views/ArchiveView.swift",
         "/Users/jade/Klinmai/Views/CompactArchiveView.swift",
+        "/Users/jade/Klinmai/Views/DesktopOrganizerView.swift",
         "/Users/jade/Klinmai/Views/FilePreviewView.swift",
         "/Users/jade/Klinmai/Views/MascotImage.swift",
         "/Users/jade/Klinmai/Views/MascotImageLoader.swift",
@@ -354,6 +374,7 @@
       "-c",
       "/Users/jade/Klinmai/ConsoleView.swift",
       "/Users/jade/Klinmai/CopyMascot.swift",
+      "/Users/jade/Klinmai/DesktopOrganizer.swift",
       "/Users/jade/Klinmai/DuplicateScanner.swift",
       "/Users/jade/Klinmai/FileOrganizer.swift",
       "/Users/jade/Klinmai/KlinmaiApp.swift",
@@ -367,6 +388,7 @@
       "/Users/jade/Klinmai/Views/ActionBarView.swift",
       "/Users/jade/Klinmai/Views/ArchiveView.swift",
       "/Users/jade/Klinmai/Views/CompactArchiveView.swift",
+      "/Users/jade/Klinmai/Views/DesktopOrganizerView.swift",
       "/Users/jade/Klinmai/Views/FilePreviewView.swift",
       "/Users/jade/Klinmai/Views/MascotImage.swift",
       "/Users/jade/Klinmai/Views/MascotImageLoader.swift",
@@ -476,6 +498,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/DesktopOrganizer.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/DuplicateScanner.swift"
         },
         {
@@ -525,6 +551,10 @@
         {
           "kind" : "file",
           "name" : "/Users/jade/Klinmai/Views/CompactArchiveView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/DesktopOrganizerView.swift"
         },
         {
           "kind" : "file",
@@ -591,6 +621,14 @@
         {
           "kind" : "file",
           "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/CopyMascot.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/DesktopOrganizerView.swift.o"
         },
         {
           "kind" : "file",

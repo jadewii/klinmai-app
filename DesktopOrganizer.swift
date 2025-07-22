@@ -70,7 +70,16 @@ class DesktopOrganizer: ObservableObject {
             }
             
             // Scan for projects in common locations
-            let projects = await projectDetector.detectProjects()
+            let commonProjectDirs = [
+                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+                FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first,
+                FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first,
+                FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Developer"),
+                FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Projects"),
+                FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Dev")
+            ].compactMap { $0 }
+            
+            let projects = await projectDetector.detectProjectFolders(in: commonProjectDirs)
             
             await MainActor.run {
                 desktopFiles = files
@@ -96,9 +105,8 @@ class DesktopOrganizer: ObservableObject {
             
             let filesToMove = desktopFiles
             let totalFiles = Double(filesToMove.count)
-            var movedCount = 0.0
             
-            for file in filesToMove {
+            for (index, file) in filesToMove.enumerated() {
                 let targetFolder: URL
                 
                 if organizeByType {
@@ -122,9 +130,9 @@ class DesktopOrganizer: ObservableObject {
                 
                 try FileManager.default.moveItem(at: file, to: finalDestination)
                 
-                movedCount += 1
+                let progress = Double(index + 1) / totalFiles
                 await MainActor.run {
-                    organizationProgress = movedCount / totalFiles
+                    organizationProgress = progress
                 }
             }
             
@@ -187,17 +195,16 @@ class DesktopOrganizer: ObservableObject {
         do {
             let filesToMove = desktopFiles
             let totalFiles = Double(filesToMove.count)
-            var movedCount = 0.0
             
-            for file in filesToMove {
+            for (index, file) in filesToMove.enumerated() {
                 let destinationURL = projectFolder.url.appendingPathComponent(file.lastPathComponent)
                 let finalDestination = uniqueFileURL(destinationURL)
                 
                 try FileManager.default.moveItem(at: file, to: finalDestination)
                 
-                movedCount += 1
+                let progress = Double(index + 1) / totalFiles
                 await MainActor.run {
-                    organizationProgress = movedCount / totalFiles
+                    organizationProgress = progress
                 }
             }
             

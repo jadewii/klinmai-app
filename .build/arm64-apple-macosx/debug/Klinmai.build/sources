@@ -1,5 +1,6 @@
 /Users/jade/Klinmai/ConsoleView.swift
 /Users/jade/Klinmai/CopyMascot.swift
+/Users/jade/Klinmai/DesktopOrganizer.swift
 /Users/jade/Klinmai/DuplicateScanner.swift
 /Users/jade/Klinmai/FileOrganizer.swift
 /Users/jade/Klinmai/KlinmaiApp.swift
@@ -13,6 +14,7 @@
 /Users/jade/Klinmai/Views/ActionBarView.swift
 /Users/jade/Klinmai/Views/ArchiveView.swift
 /Users/jade/Klinmai/Views/CompactArchiveView.swift
+/Users/jade/Klinmai/Views/DesktopOrganizerView.swift
 /Users/jade/Klinmai/Views/FilePreviewView.swift
 /Users/jade/Klinmai/Views/MascotImage.swift
 /Users/jade/Klinmai/Views/MascotImageLoader.swift
