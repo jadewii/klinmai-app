@@ -6,6 +6,7 @@ struct DesktopOrganizerView: View {
     @State private var selectedFolderOption: FolderOption = .new
     @State private var newFolderName = ""
     @State private var selectedExistingFolder = ""
+    @State private var selectedProject: ProjectFolder?
     @State private var organizeByType = true
     @State private var isOrganizing = false
     @State private var showSuccessAlert = false
@@ -14,6 +15,7 @@ struct DesktopOrganizerView: View {
     enum FolderOption {
         case new
         case existing
+        case project
     }
     
     var body: some View {
@@ -49,6 +51,14 @@ struct DesktopOrganizerView: View {
                         value: "\(organizer.getExistingDesktopFolders().count)",
                         label: "Existing Folders"
                     )
+                    
+                    if !organizer.detectedProjects.isEmpty {
+                        StatBox(
+                            icon: "folder.badge.gearshape",
+                            value: "\(organizer.detectedProjects.count)",
+                            label: "Active Projects"
+                        )
+                    }
                 }
                 .padding(.vertical, 20)
             }
@@ -106,6 +116,7 @@ struct DesktopOrganizerView: View {
                 selectedFolderOption: $selectedFolderOption,
                 newFolderName: $newFolderName,
                 selectedExistingFolder: $selectedExistingFolder,
+                selectedProject: $selectedProject,
                 organizeByType: $organizeByType,
                 isOrganizing: $isOrganizing,
                 onConfirm: {
@@ -126,14 +137,21 @@ struct DesktopOrganizerView: View {
         isOrganizing = true
         showOrganizeDialog = false
         
-        let folderName: String
-        if selectedFolderOption == .new {
-            folderName = newFolderName.isEmpty ? organizer.folderSuggestions.first! : newFolderName
-        } else {
-            folderName = selectedExistingFolder
-        }
+        let success: Bool
         
-        let success = await organizer.organizeIntoFolder(folderName: folderName, organizeByType: organizeByType)
+        switch selectedFolderOption {
+        case .new:
+            let folderName = newFolderName.isEmpty ? organizer.folderSuggestions.first! : newFolderName
+            success = await organizer.organizeIntoFolder(folderName: folderName, organizeByType: organizeByType)
+        case .existing:
+            success = await organizer.organizeIntoFolder(folderName: selectedExistingFolder, organizeByType: organizeByType)
+        case .project:
+            if let project = selectedProject {
+                success = await organizer.organizeToProject(projectFolder: project)
+            } else {
+                success = false
+            }
+        }
         
         isOrganizing = false
         if success {
@@ -141,6 +159,7 @@ struct DesktopOrganizerView: View {
             // Reset form
             newFolderName = ""
             selectedExistingFolder = ""
+            selectedProject = nil
         }
     }
 }
@@ -150,6 +169,7 @@ struct OrganizeFolderDialog: View {
     @Binding var selectedFolderOption: DesktopOrganizerView.FolderOption
     @Binding var newFolderName: String
     @Binding var selectedExistingFolder: String
+    @Binding var selectedProject: ProjectFolder?
     @Binding var organizeByType: Bool
     @Binding var isOrganizing: Bool
     let onConfirm: () -> Void
@@ -230,25 +250,70 @@ struct OrganizeFolderDialog: View {
                         }
                     }
                 }
-            }
-            
-            // Organization options
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Organization options:")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.white)
                 
-                Toggle(isOn: $organizeByType) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Organize by file type")
-                            .font(.system(size: 14))
-                            .foregroundColor(.white)
-                        Text("Creates subfolders for Images, Documents, Videos, etc.")
-                            .font(.system(size: 12))
-                            .foregroundColor(.white.opacity(0.6))
+                // Project folder option
+                if !organizer.detectedProjects.isEmpty {
+                    RadioButton(
+                        title: "Send to project folder",
+                        isSelected: selectedFolderOption == .project,
+                        action: { selectedFolderOption = .project }
+                    )
+                    
+                    if selectedFolderOption == .project {
+                        VStack(alignment: .leading, spacing: 8) {
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    ForEach(organizer.detectedProjects) { project in
+                                        ProjectRow(
+                                            project: project,
+                                            isSelected: selectedProject?.id == project.id,
+                                            action: { selectedProject = project }
+                                        )
+                                    }
+                                }
+                            }
+                            .frame(maxHeight: 150)
+                            .padding(.leading, 24)
+                            
+                            // Projemai teaser
+                            HStack(spacing: 8) {
+                                Image(systemName: "sparkles")
+                                    .foregroundColor(.yellow)
+                                    .font(.system(size: 12))
+                                Text("🦖 Projemai will make project management magical!")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.white.opacity(0.6))
+                            }
+                            .padding(.leading, 24)
+                        }
+                        .onAppear {
+                            if selectedProject == nil {
+                                selectedProject = organizer.detectedProjects.first
+                            }
+                        }
                     }
                 }
-                .toggleStyle(SwitchToggleStyle(tint: Color(hex: "f29dd3")))
+            }
+            
+            // Organization options (only for non-project destinations)
+            if selectedFolderOption != .project {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Organization options:")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                    Toggle(isOn: $organizeByType) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Organize by file type")
+                                .font(.system(size: 14))
+                                .foregroundColor(.white)
+                            Text("Creates subfolders for Images, Documents, Videos, etc.")
+                                .font(.system(size: 12))
+                                .foregroundColor(.white.opacity(0.6))
+                        }
+                    }
+                    .toggleStyle(SwitchToggleStyle(tint: Color(hex: "f29dd3")))
+                }
             }
             
             // Progress
@@ -273,7 +338,9 @@ struct OrganizeFolderDialog: View {
                     onConfirm()
                 }
                 .buttonStyle(PrimaryButtonStyle())
-                .disabled(isOrganizing || (selectedFolderOption == .new && newFolderName.isEmpty && !organizer.folderSuggestions.contains(newFolderName)))
+                .disabled(isOrganizing || 
+                    (selectedFolderOption == .new && newFolderName.isEmpty && !organizer.folderSuggestions.contains(newFolderName)) ||
+                    (selectedFolderOption == .project && selectedProject == nil))
             }
         }
         .padding(32)
@@ -385,5 +452,83 @@ struct SecondaryActionButtonStyle: ButtonStyle {
                     .stroke(Color.white.opacity(0.2), lineWidth: 1)
             )
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+    }
+}
+
+struct ProjectRow: View {
+    let project: ProjectFolder
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                // Project icon
+                Image(systemName: project.type.icon)
+                    .font(.system(size: 20))
+                    .foregroundColor(colorForProjectType(project.type))
+                    .frame(width: 30)
+                
+                // Project info
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(project.name)
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                    HStack(spacing: 8) {
+                        Text(project.type.rawValue)
+                            .font(.caption)
+                            .foregroundColor(colorForProjectType(project.type).opacity(0.8))
+                        
+                        Text("•")
+                            .foregroundColor(.white.opacity(0.3))
+                        
+                        Text("\(project.fileCount) files")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.6))
+                        
+                        Text("•")
+                            .foregroundColor(.white.opacity(0.3))
+                        
+                        Text(formatBytes(project.totalSize))
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.6))
+                    }
+                }
+                
+                Spacer()
+                
+                // Selection indicator
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 20))
+                    .foregroundColor(isSelected ? Color(hex: "f29dd3") : .white.opacity(0.3))
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(isSelected ? Color.white.opacity(0.1) : Color.white.opacity(0.05))
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    private func colorForProjectType(_ type: ProjectFolder.ProjectType) -> Color {
+        switch type {
+        case .design: return .purple
+        case .development: return .blue
+        case .video: return .red
+        case .audio: return Color(hex: "f29dd3")
+        case .photo: return .green
+        case .writing: return .orange
+        case .mixed: return .cyan
+        case .unknown: return .gray
+        }
+    }
+    
+    private func formatBytes(_ bytes: Int64) -> String {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        return formatter.string(fromByteCount: bytes)
     }
 }

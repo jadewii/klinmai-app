@@ -5,8 +5,10 @@ class DesktopOrganizer: ObservableObject {
     @Published var desktopFiles: [URL] = []
     @Published var isScanning = false
     @Published var organizationProgress: Double = 0.0
+    @Published var detectedProjects: [ProjectFolder] = []
     
     private let desktopURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
+    private let projectDetector = ProjectDetector()
     
     // Predefined folder suggestions
     let folderSuggestions = [
@@ -51,6 +53,7 @@ class DesktopOrganizer: ObservableObject {
         await MainActor.run {
             isScanning = true
             desktopFiles = []
+            detectedProjects = []
         }
         
         do {
@@ -66,8 +69,12 @@ class DesktopOrganizer: ObservableObject {
                 return resourceValues?.isRegularFile == true
             }
             
+            // Scan for projects in common locations
+            let projects = await projectDetector.detectProjects()
+            
             await MainActor.run {
                 desktopFiles = files
+                detectedProjects = projects.sorted { $0.lastModified > $1.lastModified }
                 isScanning = false
             }
         } catch {
@@ -173,6 +180,34 @@ class DesktopOrganizer: ObservableObject {
         } catch {
             print("Error getting desktop folders: \(error)")
             return []
+        }
+    }
+    
+    func organizeToProject(projectFolder: ProjectFolder) async -> Bool {
+        do {
+            let filesToMove = desktopFiles
+            let totalFiles = Double(filesToMove.count)
+            var movedCount = 0.0
+            
+            for file in filesToMove {
+                let destinationURL = projectFolder.url.appendingPathComponent(file.lastPathComponent)
+                let finalDestination = uniqueFileURL(destinationURL)
+                
+                try FileManager.default.moveItem(at: file, to: finalDestination)
+                
+                movedCount += 1
+                await MainActor.run {
+                    organizationProgress = movedCount / totalFiles
+                }
+            }
+            
+            // Refresh the file list
+            await scanDesktop()
+            
+            return true
+        } catch {
+            print("Error organizing to project: \(error)")
+            return false
         }
     }
 }
