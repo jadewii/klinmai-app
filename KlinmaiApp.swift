@@ -82,9 +82,10 @@ struct ContentView: View {
                 Picker("", selection: $selectedTab) {
                     Label("Smart Care", systemImage: "sparkles").tag(0)
                     Label("Archive", systemImage: "archivebox").tag(1)
-                    Label("Projects", systemImage: "folder.badge.gearshape").tag(2)
-                    Label("Clutter", systemImage: "trash.slash").tag(3)
-                    Label("Performance", systemImage: "speedometer").tag(4)
+                    Label("Desktop", systemImage: "desktopcomputer").tag(2)
+                    Label("Projects", systemImage: "folder.badge.gearshape").tag(3)
+                    Label("Clutter", systemImage: "trash.slash").tag(4)
+                    Label("Performance", systemImage: "speedometer").tag(5)
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
@@ -102,10 +103,12 @@ struct ContentView: View {
                     case 1:
                         CompactArchiveView()
                     case 2:
-                        ProjectsView()
+                        DesktopOrganizerView()
                     case 3:
-                        ClutterView()
+                        ProjectsView()
                     case 4:
+                        ClutterView()
+                    case 5:
                         PerformanceView()
                     default:
                         EmptyView()

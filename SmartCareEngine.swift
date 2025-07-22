@@ -12,6 +12,7 @@ class SmartCareEngine: ObservableObject {
     private let duplicateScanner = DuplicateScanner()
     private let systemCleaner = SystemCleaner()
     private let mailAndTrashCleaner = MailAndTrashCleaner()
+    private let desktopOrganizer = DesktopOrganizer()
     
     func runFullScan() async {
         isRunning = true
@@ -21,19 +22,19 @@ class SmartCareEngine: ObservableObject {
         log("🚀 Starting Smart Care scan...", type: .info)
         log("💖 Hi! I'm Klinmai! Let's make your Mac sparkle clean!", type: .info)
         
-        // Clean Desktop
-        log("📁 Scanning Desktop...", type: .progress)
-        let desktopResults = await fileOrganizer.cleanDesktop()
-        totalActionsPerformed += desktopResults.filesOrganized
+        // Check Desktop first
+        log("📁 Checking Desktop...", type: .progress)
+        await desktopOrganizer.scanDesktop()
         
-        if desktopResults.filesOrganized > 0 {
-            log("✅ Desktop tidied up! Organized \(desktopResults.filesOrganized) files into neat folders", type: .success)
-            if desktopResults.filesOrganized > 50 {
-                log("💡 Wow, that was a lot of files! Consider using Desktop Stacks (right-click → Use Stacks)", type: .info)
-            }
+        if !desktopOrganizer.desktopFiles.isEmpty {
+            log("🗂️ Found \(desktopOrganizer.desktopFiles.count) files on your desktop", type: .info)
+            log("💡 Would you like to organize them into a folder first?", type: .info)
+            log("👉 Check the Desktop tab to organize before cleaning!", type: .warning)
+            
+            // Don't auto-organize, just notify
+            totalActionsPerformed += 0
         } else {
             log("✨ Desktop already spotless — nice work staying organized!", type: .success)
-            log("💡 Tip: I found \(desktopResults.filesScanned) files already in folders. You're doing great!", type: .info)
         }
         
         // Clean Downloads
@@ -192,12 +193,14 @@ class SmartCareEngine: ObservableObject {
     
     // Quick action methods
     func cleanDesktop() async {
-        log("📁 Organizing Desktop...", type: .progress)
-        let results = await fileOrganizer.cleanDesktop()
-        if results.filesOrganized > 0 {
-            log("✅ Desktop organized: \(results.filesOrganized) files", type: .success)
+        log("📁 Checking Desktop...", type: .progress)
+        await desktopOrganizer.scanDesktop()
+        
+        if !desktopOrganizer.desktopFiles.isEmpty {
+            log("🗂️ Found \(desktopOrganizer.desktopFiles.count) files on desktop", type: .info)
+            log("💡 Switch to the Desktop tab to organize them into folders!", type: .warning)
         } else {
-            log("✨ Desktop already organized!", type: .success)
+            log("✨ Desktop already clean!", type: .success)
         }
     }
     
