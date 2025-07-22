@@ -193,12 +193,30 @@ class SmartCareEngine: ObservableObject {
     
     // Quick action methods
     func cleanDesktop() async {
-        log("📁 Checking Desktop...", type: .progress)
+        log("📁 Organizing Desktop...", type: .progress)
         await desktopOrganizer.scanDesktop()
         
         if !desktopOrganizer.desktopFiles.isEmpty {
-            log("🗂️ Found \(desktopOrganizer.desktopFiles.count) files on desktop", type: .info)
-            log("💡 Switch to the Desktop tab to organize them into folders!", type: .warning)
+            let fileCount = desktopOrganizer.desktopFiles.count
+            log("🗂️ Found \(fileCount) files on desktop", type: .info)
+            
+            // Create default folder with today's date
+            let folderName = "Desktop Cleanup \(DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none))"
+            log("📂 Moving files to Documents/\(folderName)...", type: .progress)
+            
+            // Move to Documents folder by default
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            let success = await desktopOrganizer.organizeIntoFolder(folderName: folderName, organizeByType: true, targetDirectory: documentsURL)
+            
+            if success {
+                log("✅ Desktop organized! Moved \(fileCount) files to Documents/\(folderName)", type: .success)
+                log("💡 Tip: Use the Desktop tab for more organization options!", type: .info)
+                totalActionsPerformed += fileCount
+            } else {
+                log("⚠️ Failed to organize desktop files", type: .error)
+                log("💡 Try using the Desktop tab for manual organization", type: .info)
+            }
         } else {
             log("✨ Desktop already clean!", type: .success)
         }

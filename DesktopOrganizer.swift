@@ -94,8 +94,10 @@ class DesktopOrganizer: ObservableObject {
         }
     }
     
-    func organizeIntoFolder(folderName: String, organizeByType: Bool) async -> Bool {
-        let folderURL = desktopURL.appendingPathComponent(folderName)
+    func organizeIntoFolder(folderName: String, organizeByType: Bool, targetDirectory: URL? = nil) async -> Bool {
+        // Use provided directory or default to desktop
+        let baseDirectory = targetDirectory ?? desktopURL
+        let folderURL = baseDirectory.appendingPathComponent(folderName)
         
         do {
             // Create main folder if it doesn't exist
