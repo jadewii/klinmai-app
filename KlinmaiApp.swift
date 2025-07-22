@@ -53,7 +53,7 @@ struct ContentView: View {
     @EnvironmentObject var llmHandler: LLMHandler
     @State private var userInput = ""
     @State private var isScanning = false
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1  // Default to Archive view
     @State private var buttonScale: CGFloat = 1.0
     @State private var dinoRotation: Double = 0
     @State private var isConsoleVisible = false

@@ -1,4 +1,6 @@
 import SwiftUI
+import AppKit
+import QuickLookThumbnailing
 
 struct SimplifiedArchiveGridItem: View {
     let candidate: ArchiveCandidate
@@ -7,30 +9,35 @@ struct SimplifiedArchiveGridItem: View {
     let onDelete: () -> Void
     
     @State private var showDeleteConfirmation = false
-    @State private var showUpgradePrompt = false
-    
-    private var shouldShowUpgradePrompt: Bool {
-        return candidate.type == .image || candidate.type == .gif || candidate.type == .video
-    }
+    @State private var thumbnail: NSImage?
+    @State private var isLoadingThumbnail = false
     
     var body: some View {
         VStack(spacing: 8) {
-            // Icon and checkbox
+            // Thumbnail with checkbox overlay
             ZStack(alignment: .topLeading) {
-                // File type icon centered
+                // Thumbnail or icon
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(Color.white.opacity(0.1))
-                        .frame(height: 80)
+                        .frame(width: 120, height: 120)
                     
-                    VStack(spacing: 4) {
+                    if let thumb = thumbnail {
+                        Image(nsImage: thumb)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 120, height: 120)
+                            .clipped()
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    } else if isLoadingThumbnail {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(0.7)
+                    } else {
+                        // Show icon for non-previewable files
                         Image(systemName: iconForType(candidate.type))
-                            .font(.system(size: 32))
+                            .font(.system(size: 36))
                             .foregroundColor(colorForType(candidate.type))
-                        
-                        Text(candidate.type.rawValue)
-                            .font(.caption)
-                            .foregroundColor(.white.opacity(0.5))
                     }
                 }
                 
@@ -47,7 +54,7 @@ struct SimplifiedArchiveGridItem: View {
                         .padding(4)
                 )
                 
-                // Delete button  
+                // Delete button (top-right)
                 VStack {
                     HStack {
                         Spacer()
@@ -68,6 +75,46 @@ struct SimplifiedArchiveGridItem: View {
                     }
                     Spacer()
                 }
+                
+                // Open button (bottom-left)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button(action: {
+                            openFile()
+                        }) {
+                            Image(systemName: "arrow.up.right.square")
+                                .font(.system(size: 14))
+                                .foregroundColor(.white)
+                                .padding(6)
+                                .background(
+                                    Circle()
+                                        .fill(Color.white.opacity(0.25))
+                                )
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(8)
+                        Spacer()
+                    }
+                }
+                
+                // iCloud status (bottom-right)
+                if !candidate.iCloudStatus.icon.isEmpty {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text(candidate.iCloudStatus.icon)
+                                .font(.caption)
+                                .padding(4)
+                                .background(
+                                    Circle()
+                                        .fill(Color.black.opacity(0.5))
+                                )
+                                .padding(4)
+                        }
+                    }
+                }
             }
             
             // File info
@@ -83,42 +130,18 @@ struct SimplifiedArchiveGridItem: View {
                         .foregroundColor(.white.opacity(0.7))
                     
                     Spacer()
-                    
-                    if !candidate.iCloudStatus.icon.isEmpty {
-                        Text(candidate.iCloudStatus.icon)
-                            .font(.caption)
-                    }
                 }
             }
             .padding(.horizontal, 8)
-            
-            // Upgrade prompt for media files
-            if shouldShowUpgradePrompt {
-                Button(action: {
-                    showUpgradePrompt = true
-                }) {
-                    HStack(spacing: 2) {
-                        Image(systemName: "arrow.up.circle.fill")
-                            .font(.system(size: 11))
-                        Text("Open in \(candidate.type == .video ? "Audiomai" : "Imagimai")")
-                            .font(.system(size: 10))
-                    }
-                    .foregroundColor(.blue)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.blue.opacity(0.1))
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
         }
-        .frame(maxWidth: .infinity)
+        .frame(width: 140)
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(isSelected ? Color.white.opacity(0.15) : Color.white.opacity(0.05))
         )
+        .onAppear {
+            loadThumbnail()
+        }
         .alert("Delete File?", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
@@ -126,9 +149,6 @@ struct SimplifiedArchiveGridItem: View {
             }
         } message: {
             Text("Are you sure you want to permanently delete \"\(candidate.url.lastPathComponent)\"?")
-        }
-        .sheet(isPresented: $showUpgradePrompt) {
-            UpgradePromptView(fileType: candidate.type)
         }
     }
     
@@ -164,6 +184,41 @@ struct SimplifiedArchiveGridItem: View {
         return formatter.string(fromByteCount: bytes)
     }
     
+    private func loadThumbnail() {
+        guard thumbnail == nil else { return }
+        
+        isLoadingThumbnail = true
+        
+        Task {
+            await generateThumbnail()
+        }
+    }
+    
+    @MainActor
+    private func generateThumbnail() async {
+        let size = CGSize(width: 240, height: 240) // 2x for retina
+        let request = QLThumbnailGenerator.Request(
+            fileAt: candidate.url,
+            size: size,
+            scale: 2.0,
+            representationTypes: .thumbnail
+        )
+        
+        Task.detached(priority: .background) {
+            do {
+                let thumbnail = try await QLThumbnailGenerator.shared.generateBestRepresentation(for: request)
+                await MainActor.run {
+                    self.thumbnail = thumbnail.nsImage
+                    self.isLoadingThumbnail = false
+                }
+            } catch {
+                await MainActor.run {
+                    self.isLoadingThumbnail = false
+                }
+            }
+        }
+    }
+    
     private func deleteFile() {
         do {
             try FileManager.default.removeItem(at: candidate.url)
@@ -171,5 +226,20 @@ struct SimplifiedArchiveGridItem: View {
         } catch {
             print("Error deleting file: \(error)")
         }
+    }
+    
+    private func openFile() {
+        NSWorkspace.shared.open(candidate.url)
+    }
+}
+
+struct CheckboxToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: { configuration.isOn.toggle() }) {
+            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
+                .foregroundColor(configuration.isOn ? Color(hex: "f29dd3") : .white.opacity(0.5))
+                .font(.system(size: 20))
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }

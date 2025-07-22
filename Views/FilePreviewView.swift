@@ -275,15 +275,12 @@ struct FilePreviewView: View {
             fileAt: url,
             size: size,
             scale: 1.0,
-            representationTypes: .lowQualityThumbnail  // Use low quality for speed
+            representationTypes: .thumbnail  // Use thumbnail representation type
         )
         
-        // Cancel any previous request to avoid queue buildup
-        QLThumbnailGenerator.shared.cancel(request)
-        
         do {
-            let thumbnail = try await QLThumbnailGenerator.shared.generateBestRepresentation(for: request)
-            self.thumbnail = thumbnail.nsImage
+            let representation = try await QLThumbnailGenerator.shared.generateBestRepresentation(for: request)
+            self.thumbnail = NSImage(cgImage: representation.cgImage, size: size)
         } catch {
             // Thumbnail generation failed - that's ok
         }

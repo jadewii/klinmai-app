@@ -100,6 +100,14 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/SimplifiedArchiveGridItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/SimplifiedArchiveRow.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/Views/SmartCareView.swift"
         },
         {
@@ -142,6 +150,8 @@
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImage.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/MascotImageLoader.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.swift.o",
+        "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.swift.o",
+        "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartSuggestionsView.swift.o",
         "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/iCloudArchiveModal.swift.o"
@@ -276,6 +286,14 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.swift.o"
         },
         {
@@ -312,6 +330,8 @@
         "/Users/jade/Klinmai/Views/MascotImage.swift",
         "/Users/jade/Klinmai/Views/MascotImageLoader.swift",
         "/Users/jade/Klinmai/Views/ProjectsView.swift",
+        "/Users/jade/Klinmai/Views/SimplifiedArchiveGridItem.swift",
+        "/Users/jade/Klinmai/Views/SimplifiedArchiveRow.swift",
         "/Users/jade/Klinmai/Views/SmartCareView.swift",
         "/Users/jade/Klinmai/Views/SmartSuggestionsView.swift",
         "/Users/jade/Klinmai/Views/iCloudArchiveModal.swift"
@@ -351,6 +371,8 @@
       "/Users/jade/Klinmai/Views/MascotImage.swift",
       "/Users/jade/Klinmai/Views/MascotImageLoader.swift",
       "/Users/jade/Klinmai/Views/ProjectsView.swift",
+      "/Users/jade/Klinmai/Views/SimplifiedArchiveGridItem.swift",
+      "/Users/jade/Klinmai/Views/SimplifiedArchiveRow.swift",
       "/Users/jade/Klinmai/Views/SmartCareView.swift",
       "/Users/jade/Klinmai/Views/SmartSuggestionsView.swift",
       "/Users/jade/Klinmai/Views/iCloudArchiveModal.swift",
@@ -522,6 +544,14 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/SimplifiedArchiveGridItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/Views/SimplifiedArchiveRow.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/jade/Klinmai/Views/SmartCareView.swift"
         },
         {
@@ -601,6 +631,14 @@
         {
           "kind" : "file",
           "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.swift.o"
         },
         {
           "kind" : "file",

@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct SimplifiedArchiveRow: View {
     let candidate: ArchiveCandidate
@@ -7,7 +8,6 @@ struct SimplifiedArchiveRow: View {
     let onDelete: () -> Void
     
     @State private var showDeleteConfirmation = false
-    @State private var showUpgradePrompt = false
     
     private var ageText: String {
         let days = Calendar.current.dateComponents([.day], from: candidate.lastModified, to: Date()).day ?? 0
@@ -18,10 +18,6 @@ struct SimplifiedArchiveRow: View {
         } else {
             return "\(days / 365) years old"
         }
-    }
-    
-    private var shouldShowUpgradePrompt: Bool {
-        return candidate.type == .image || candidate.type == .gif || candidate.type == .video
     }
     
     var body: some View {
@@ -62,28 +58,6 @@ struct SimplifiedArchiveRow: View {
             
             Spacer()
             
-            // Upgrade prompt for media files
-            if shouldShowUpgradePrompt {
-                Button(action: {
-                    showUpgradePrompt = true
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "arrow.up.circle.fill")
-                            .font(.system(size: 14))
-                        Text(candidate.type == .video ? "View in Audiomai" : "View in Imagimai")
-                            .font(.caption)
-                    }
-                    .foregroundColor(.blue)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.blue.opacity(0.1))
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-            
             // File metadata
             VStack(alignment: .trailing, spacing: 4) {
                 Text(formatBytes(candidate.size))
@@ -94,6 +68,17 @@ struct SimplifiedArchiveRow: View {
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.5))
             }
+            
+            // Open button
+            Button(action: {
+                openFile()
+            }) {
+                Image(systemName: "arrow.up.right.square")
+                    .font(.system(size: 16))
+                    .foregroundColor(.white.opacity(0.8))
+            }
+            .buttonStyle(PlainButtonStyle())
+            .help("Open in default app")
             
             // Trash button
             Button(action: {
@@ -119,9 +104,6 @@ struct SimplifiedArchiveRow: View {
             }
         } message: {
             Text("Are you sure you want to permanently delete \"\(candidate.url.lastPathComponent)\"? This action cannot be undone.")
-        }
-        .sheet(isPresented: $showUpgradePrompt) {
-            UpgradePromptView(fileType: candidate.type)
         }
     }
     
@@ -164,6 +146,10 @@ struct SimplifiedArchiveRow: View {
         } catch {
             print("Error deleting file: \(error)")
         }
+    }
+    
+    private func openFile() {
+        NSWorkspace.shared.open(candidate.url)
     }
 }
 

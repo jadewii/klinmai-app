@@ -116,6 +116,18 @@
     "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView~partial.swiftmodule",
     "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/ProjectsView.swiftdeps"
   },
+  "/Users/jade/Klinmai/Views/SimplifiedArchiveGridItem.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveGridItem.swiftdeps"
+  },
+  "/Users/jade/Klinmai/Views/SimplifiedArchiveRow.swift": {
+    "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.d",
+    "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.swift.o",
+    "swiftmodule": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow~partial.swiftmodule",
+    "swift-dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SimplifiedArchiveRow.swiftdeps"
+  },
   "/Users/jade/Klinmai/Views/SmartCareView.swift": {
     "dependencies": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.d",
     "object": "/Users/jade/Klinmai/.build/arm64-apple-macosx/debug/Klinmai.build/SmartCareView.swift.o",
