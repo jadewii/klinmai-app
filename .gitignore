@@ -1,0 +1,22 @@
+# Xcode
+.build/
+DerivedData/
+*.xcodeproj/
+*.xcworkspace/
+
+# Swift Package Manager
+Package.resolved
+.swiftpm/
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# Build artifacts
+DesktopCleaner
+*.app/
+
+# Scripts and backups
+*.backup
+*.sh
